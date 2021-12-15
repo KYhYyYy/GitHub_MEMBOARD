@@ -1,4 +1,4 @@
-package com.icia.github_memboard;
+package com.icia.gitmemboard;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

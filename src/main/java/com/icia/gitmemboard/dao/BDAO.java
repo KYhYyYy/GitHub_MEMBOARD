@@ -1,6 +1,6 @@
-package com.icia.github_memboard.dao;
+package com.icia.gitmemboard.dao;
 
-import com.icia.github_memboard.dto.BOARD;
+import com.icia.gitmemboard.dto.BOARD;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.icia.github_memboard;
+package com.icia.gitmemboard;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,7 +1,7 @@
-package com.icia.github_memboard.service;
+package com.icia.gitmemboard.service;
 
-import com.icia.github_memboard.dao.BDAO;
-import com.icia.github_memboard.dto.BOARD;
+import com.icia.gitmemboard.dao.BDAO;
+import com.icia.gitmemboard.dto.BOARD;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;

@@ -1,7 +1,7 @@
-package com.icia.github_memboard.controller;
+package com.icia.gitmemboard.controller;
 
-import com.icia.github_memboard.dto.BOARD;
-import com.icia.github_memboard.service.BService;
+import com.icia.gitmemboard.dto.BOARD;
+import com.icia.gitmemboard.service.BService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;

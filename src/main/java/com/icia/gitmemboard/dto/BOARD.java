@@ -1,4 +1,4 @@
-package com.icia.github_memboard.dto;
+package com.icia.gitmemboard.dto;
 
 import lombok.Data;
 import org.apache.ibatis.type.Alias;

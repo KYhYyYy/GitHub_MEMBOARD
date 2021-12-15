@@ -1,4 +1,4 @@
-package com.icia.github_memboard;
+package com.icia.gitmemboard;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
