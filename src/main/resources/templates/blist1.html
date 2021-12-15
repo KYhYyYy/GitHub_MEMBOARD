@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="KYUNGHWAN" />
+    <meta name="description" content="MEMBOARD프로젝트 게시글 목록 페이지" />
+    <title>MEMBOARD_게시글목록</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/table.css}">
+</head>
+<body>
+<table>
+    <caption>게시글 목록</caption>
+    <tr>
+        <th>글번호</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>작성일</th>
+        <th>조회수</th>
+    </tr>
+    <tr th:each="list : ${boardList}">
+        <td th:text="${list.bNo}">글번호</td>
+        <td><a th:text="${list.bTitle}" th:href="@{bView(bNo=${list.bNo})}"></a></td>
+        <td th:text="${list.bWriter}">작성자</td>
+        <td th:text="${list.bDate}">작성일</td>
+        <td th:text="${list.bHit}">조회수</td>
+    </tr>
+</table>
+</body>
+</html>

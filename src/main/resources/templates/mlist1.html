@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="KYUNGHWAN" />
+    <meta name="description" content="MEMBOARD프로젝트 회원목록 페이지" />
+    <title>MEMBOARD_회원목록</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/table.css}">
+</head>
+
+<body>
+<table>
+    <caption>회원목록</caption>
+    <tr>
+        <th>아이디</th>
+        <th>이름</th>
+        <th>수정</th>
+        <th>삭제</th>
+    </tr>
+
+    <tr th:each="list : ${memberList}">
+        <td><a th:text="${list.mId}" th:href="@{mView(mId=${list.mId}, mName=${list.mName})}"></a></td>
+        <td th:text="${list.mName}">이름</td>
+
+        <!-- mModiForm로 mId값 보내기 -->
+        <td><a th:if="${session.loginId eq list.mId || session.loginId eq 'admin'}" th:href="@{mModiForm(mId=${list.mId})}">수정</a></td>
+
+        <!-- mDelete로 mId값 보내기 -->
+        <td><a th:if="${session.loginId eq list.mId || session.loginId eq 'admin'}" th:text="삭제" th:href="@{mDelete(mId=${list.mId})}"></a></td>
+    </tr>
+
+</table>
+</body>
+
+</html>

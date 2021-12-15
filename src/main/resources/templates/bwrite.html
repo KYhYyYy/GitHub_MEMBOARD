@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
+    <meta name="author" content="AdminKit">
+    <meta name="keywords"
+          content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="shortcut icon" href="img/icons/icon-48x48.png"/>
+
+    <link rel="canonical" href="https://demo-basic.adminkit.io/ui-forms.html"/>
+
+    <title>Forms | AdminKit Demo</title>
+
+    <link href="css/app.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<div class="wrapper">
+
+    <!-- (왼쪽) nav -->
+    <nav id="sidebar" class="sidebar js-sidebar">
+        <div class="sidebar-content js-simplebar">
+            <a class="sidebar-brand" href="index">
+                <span class="align-middle">ICIA_MEMBOARD</span>
+            </a>
+
+            <ul class="sidebar-nav">
+                <li class="sidebar-header">
+                    MEMBER
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="joinForm">
+                        <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">회원가입</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="loginForm">
+                        <i class="align-middle" data-feather="user"></i> <span class="align-middle">로그인</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="mList">
+                        <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">회원목록</span>
+                    </a>
+                </li>
+
+
+                <!-- thymeleaf(th)로 경로(주소)를 보낼때 @{ } 안에 값을 넣어준다. -->
+                <!-- href와 th:href의 차이점 -->
+                <!-- th:href는 ${data.value} -->
+                <li class="sidebar-item">
+                    <a class="sidebar-link" th:href="@{mView(mId=${session.loginId})}">
+                        <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">내정보보기</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="logout">
+                        <i class="align-middle" data-feather="grid"></i> <span class="align-middle">로그아웃</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-header">
+                    BOARD
+                </li>
+
+                <li class="sidebar-item active">
+                    <a class="sidebar-link" href="writeForm">
+                        <i class="align-middle" data-feather="square"></i> <span class="align-middle">글쓰기</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href=bList>
+                        <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">글목록</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link" th:href="@{bView(bNo=35)}">
+                        <i class="align-middle" data-feather="align-left"></i> <span class="align-middle">게시글보기</span>
+                    </a>
+                </li>
+
+
+            </ul>
+
+
+        </div>
+    </nav>
+
+    <!-- (오른쪽) main-->
+    <div class="main">
+
+        <!-- header 부분 -->
+        <nav class="navbar navbar-expand navbar-light navbar-bg">
+            <a class="sidebar-toggle js-sidebar-toggle">
+                <i class="hamburger align-self-center"></i>
+            </a>
+
+            <div class="navbar-collapse collapse">
+                <ul class="navbar-nav navbar-align">
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
+                            <i class="align-middle" data-feather="settings"></i>
+                        </a>
+
+                        <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
+                            <!-- <img th:if="${session.loginId eq null}" src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall"/>-->
+                            <img th:if="${session.loginId ne null}"
+                                 th:src="@{/profile/{mProfileName}(mProfileName=${session.loginProfile})}"
+                                 class="avatar img-fluid rounded me-1" alt="Charles Hall"/>
+
+                            <span th:if="${session.loginId eq null}" class="text-dark">로그인하기</span>
+                            <span th:if="${session.loginId ne null}" class="text-dark"
+                                  th:text="${session.loginId}"></span>
+
+                        </a>
+
+                        <!-- 로그인을 하지 않았을 경우 : session.loginId eq null일때 -->
+                        <div th:if="${session.loginId eq null}" class="dropdown-menu dropdown-menu-end">
+                            <a class="dropdown-item" href="joinForm"><i class="align-middle me-1"
+                                                                        data-feather="user"></i> 회원가입</a>
+                            <a class="dropdown-item" href="loginForm"><i class="align-middle me-1"
+                                                                         data-feather="pie-chart"></i>
+                                로그인</a>
+                            <a class="dropdown-item" href="mList"><i class="align-middle me-1"
+                                                                     data-feather="settings"></i> 회원목록</a>
+                            <a class="dropdown-item" href="bList"><i class="align-middle me-1"
+                                                                     data-feather="help-circle"></i> 게시글목록</a>
+                        </div>
+
+                        <!-- 로그인을 했을 경우 : session.loginId ne null일때 -->
+                        <div th:if="${session.loginId ne null}" class="dropdown-menu dropdown-menu-end">
+                            <a class="dropdown-item" href="mList"><i class="align-middle me-1"
+                                                                     data-feather="user"></i> 회원목록</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="writeForm"><i class="align-middle me-1"
+                                                                          data-feather="settings"></i> 글작성</a>
+                            <a class="dropdown-item" href="bList"><i class="align-middle me-1"
+                                                                     data-feather="help-circle"></i> 글목록</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="logout">Log out</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- content 부분 -->
+        <main class="content">
+            <div class="container-fluid p-0">
+
+                <div class="mb-3">
+                    <h1 class="h3 d-inline align-middle">게시글 작성</h1>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-12 col-lg-6">
+                        <div class="card">
+                            <form action="bWrite" method="POST" enctype="multipart/form-data">
+
+                            <!-- 작성자 bWriter (type이 hidden이라 실제로 보이지 않음!) -->
+                            <input type="hidden" th:name="bWriter" th:value="${session.loginId}">
+
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">제목</h5>
+                            </div>
+                            <div class="card-body">
+                                <input type="text" class="form-control" placeholder="제목을 입력하세요" name="bTitle">
+                            </div>
+
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">내용</h5>
+                            </div>
+                            <div class="card-body">
+                                <textarea class="form-control" rows="10" placeholder="내용을 입력하세요" name="bContent"></textarea>
+                            </div>
+
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">첨부파일</h5>
+                            </div>
+                            <div class="card-body">
+                                <input type="file" class="form-control" name="bFile">
+                            </div>
+                            <div class="card-body">
+                                <input type="submit" class="btn btn-primary" value="작성">
+                                <input type="reset" class="btn btn-primary" value="초기화">
+                            </div>
+                            </form>
+                        </div>
+
+                       <!-- <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">Checkboxes</h5>
+                            </div>
+                            <div class="card-body">
+                                <div>
+                                    <label class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="">
+                                        <span class="form-check-label">
+              Option one is this and that&mdash;be sure to include why it's great
+            </span>
+                                    </label>
+                                    <label class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" disabled>
+                                        <span class="form-check-label">
+              Option two is disabled
+            </span>
+                                    </label>
+                                </div>
+                                <div>
+                                    <label class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" value="option1">
+                                        <span class="form-check-label">
+              1
+            </span>
+                                    </label>
+                                    <label class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" value="option2">
+                                        <span class="form-check-label">
+              2
+            </span>
+                                    </label>
+                                    <label class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" value="option3" disabled>
+                                        <span class="form-check-label">
+              3
+            </span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">Read only</h5>
+                            </div>
+                            <div class="card-body">
+                                <input class="form-control" type="text" placeholder="Readonly input" readonly>
+                            </div>
+                        </div>-->
+                    </div>
+
+                    <!--<div class="col-12 col-lg-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">Radios</h5>
+                            </div>
+                            <div class="card-body">
+                                <div>
+                                    <label class="form-check">
+                                        <input class="form-check-input" type="radio" value="option1"
+                                               name="radios-example" checked>
+                                        <span class="form-check-label">
+              Option one is this and that&mdash;be sure to include why it's great
+            </span>
+                                    </label>
+                                    <label class="form-check">
+                                        <input class="form-check-input" type="radio" value="option2"
+                                               name="radios-example">
+                                        <span class="form-check-label">
+              Option two can be something else and selecting it will deselect option one
+            </span>
+                                    </label>
+                                    <label class="form-check">
+                                        <input class="form-check-input" type="radio" value="option3"
+                                               name="radios-example" disabled>
+                                        <span class="form-check-label">
+              Option three is disabled
+            </span>
+                                    </label>
+                                </div>
+                                <div>
+                                    <label class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inline-radios-example"
+                                               value="option1">
+                                        <span class="form-check-label">
+              1
+            </span>
+                                    </label>
+                                    <label class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inline-radios-example"
+                                               value="option2">
+                                        <span class="form-check-label">
+              2
+            </span>
+                                    </label>
+                                    <label class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inline-radios-example"
+                                               value="option3" disabled>
+                                        <span class="form-check-label">
+              3
+            </span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">Selects</h5>
+                            </div>
+                            <div class="card-body">
+                                <select class="form-select mb-3">
+                                    <option selected>Open this select menu</option>
+                                    <option>One</option>
+                                    <option>Two</option>
+                                    <option>Three</option>
+                                </select>
+
+                                <select multiple class="form-control">
+                                    <option>One</option>
+                                    <option>Two</option>
+                                    <option>Three</option>
+                                    <option>Four</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">Disabled</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label class="form-label">Disabled input</label>
+                                    <input type="text" class="form-control" placeholder="Disabled input" disabled>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Disabled select menu</label>
+                                    <select class="form-control" disabled>
+                                        <option>Disabled select</option>
+                                    </select>
+                                </div>
+                                <label class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" disabled>
+                                    <span class="form-check-label">
+            Can't check this
+          </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>-->
+                </div>
+
+            </div>
+        </main>
+
+        <!--fotter 부분-->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row text-muted">
+                    <div class="col-6 text-start">
+                        <p class="mb-0">
+                            <a class="text-muted" href="https:/www.icia.co.kr/" target="_blank"><strong>KYUNGHWAN</strong></a>
+                            &copy;
+                        </p>
+                    </div>
+                    <div class="col-6 text-end">
+                        <ul class="list-inline">
+                            <li class="list-inline-item">
+                                <a class="text-muted" href="https://adminkit.io/" target="_blank">Support</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a class="text-muted" href="https://adminkit.io/" target="_blank">Help Center</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a class="text-muted" href="https://adminkit.io/" target="_blank">Privacy</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a class="text-muted" href="https://adminkit.io/" target="_blank">Terms</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<script src="js/app.js"></script>
+
+</body>
+
+<script>
+    let loginId = '[[${session.loginId}]]';
+
+    // script에서 String 타입의 null은 ""로 표현할 수 있다.
+    if(loginId==""){
+        alert('로그인 이후 이용해주세요');
+        location.href="loginForm";
+    }
+</script>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="KYUNGHWAN" />
+    <meta name="description" content="MEMBOARD프로젝트 회원상세보기 페이지" />
+    <title>MEMBOARD_회원상세보기</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/table.css}">
+</head>
+<table>
+    <caption>회원 상세보기</caption>
+    <tr>
+        <th>아이디</th>
+        <td th:text="${member.mId}"></td>
+    </tr>
+
+    <tr>
+        <th>비밀번호</th>
+        <td th:text="${member.mPw}"></td>
+    </tr>
+
+    <tr>
+        <th>이름</th>
+        <td th:text="${member.mName}"></td>
+    </tr>
+
+    <tr>
+        <th>나이</th>
+        <td th:text="${member.mAge}"></td>
+    </tr>
+
+    <tr>
+        <th>사진</th>
+        <td><img th:src="@{/profile/{mProfileName}(mProfileName=${member.mProfileName})}" width="200px" /></td>
+    </tr>
+
+    <body>
+
+    </body>
+
+</html>

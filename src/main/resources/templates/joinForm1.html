@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="KYUNGHWAN" />
+    <meta name="description" content="MEMBOARD프로젝트 회원가입 페이지" />
+    <title>MEMBOARD_회원가입</title>
+</head>
+
+<body>
+
+<!-- 자동정렬 : [Ctrl] + [Alt] + [L] -->
+
+<form action="mJoin" method="POST" enctype="multipart/form-data">
+    <table>
+        <caption>회원가입</caption>
+
+        <tr>
+            <th>아이디</th>
+            <td><input type="text" name="mId" /></td>
+        </tr>
+
+        <tr>
+            <th>패스워드</th>
+            <td><input type="password" name="mPw" /></td>
+        </tr>
+
+        <tr>
+            <th>이름</th>
+            <td><input type="text" name="mName" /></td>
+        </tr>
+
+        <tr>
+            <th>나이</th>
+            <td><input type="text" name="mAge" /></td>
+        </tr>
+
+        <tr>
+            <th>사진</th>
+            <td><input type="file" name="mProfile" /></td>
+        </tr>
+
+        <tr>
+            <td colspan="2"><input type="submit" value="가입" /></td>
+        </tr>
+
+    </table>
+</form>
+
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="x-ua-compatible" content="IE=edge" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="KYUNGHWAN" />
+  <meta name="description" content="MEMBOARD프로젝트 index페이지" />
+  <title>MEMBOARD_index</title>
+</head>
+<body>
+<h1>MEMBOARD 프로젝트</h1>
+<img src="/img/인천일보아카데미.PNG" width="350px"><br/><br/>
+
+<button th:if="${session.loginId eq null}" onclick="location.href='joinForm'">회원가입</button>
+<button th:if="${session.loginId eq null}" onclick="location.href='loginForm'">로그인</button>
+
+<button onclick="location.href='mList'">회원목록</button>
+<button onclick="location.href='bList'">게시글목록</button>
+
+<button th:if="${session.loginId ne null}" onclick="location.href='writeForm'">글작성</button>
+<button th:if="${session.loginId ne null}" onclick="location.href='logout'">로그아웃</button>
+<p th:if="${session.loginId ne null}" th:text="${session.loginId} + '님 로그인'"></p>
+
+</body>
+</html>

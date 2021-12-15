@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="KYUNGHWAN" />
+    <meta name="description" content="MEMBOARD프로젝트 게시글 상세보기 페이지" />
+    <title>MEMBOARD_게시글상세보기</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/table.css}">
+</head>
+<table>
+<body>
+<table>
+    <caption>게시글 상세보기</caption>
+    <tr>
+        <th>글번호</th>
+        <td th:text="${board.bNo}"></td>
+    </tr>
+    <tr>
+        <th>제목</th>
+        <td th:text="${board.bTitle}"></td>
+    </tr>
+    <tr>
+        <th>작성자</th>
+        <td th:text="${board.bWriter}"></td>
+    </tr>
+    <tr>
+        <th>작성일</th>
+        <td th:text="${board.bDate}"></td>
+    </tr>
+    <tr>
+        <th>조회수</th>
+        <td th:text="${board.bHit}"></td>
+    </tr>
+    <tr>
+        <th>내용</th>
+        <td th:text="${board.bContent}"></td>
+    </tr>
+    <tr>
+        <th>첨부파일</th>
+        <td><img th:src="@{/upload/{bFileName}(bFileName=${board.bFileName})}" width="200px" /></td>
+    </tr>
+    <tr th:if="${session.loginId eq board.bWriter || session.loginId eq 'admin'}">
+        <td colspan="2">
+            <a th:href="@{bModiForm(bNo=${board.bNo})}"><button>수정</button></a>
+            <a th:href="@{bDelete(bNo=${board.bNo})}"><button>삭제</button></a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

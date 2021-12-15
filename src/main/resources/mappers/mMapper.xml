@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.icia.github_memboard.dao.MDAO">
+
+    <insert id="mJoin" parameterType="member">
+        INSERT INTO BTMEMBER VALUES(#{mId}, #{mPw}, #{mName}, #{mAge}, #{mProfileName})
+    </insert>
+
+    <select id="mLogin" parameterType="member" resultType="member">
+        SELECT * FROM BTMEMBER WHERE MID=#{mId} AND MPW=#{mPw}
+    </select>
+
+    <select id="mList" resultType="member">
+        SELECT * FROM BTMEMBER
+    </select>
+
+    <select id="mView" parameterType="String" resultType="member">
+        SELECT * FROM BTMEMBER WHERE MID=#{mId}
+    </select>
+
+    <update id="mModify" parameterType="member">
+        UPDATE BTMEMBER SET MPW=#{mPw}, MNAME=#{mName}, MAGE=#{mAge} WHERE MID=#{mId}
+    </update>
+
+    <delete id="mDelete" parameterType="String">
+        DELETE FROM BTMEMBER WHERE MID=#{mId}
+    </delete>
+
+</mapper>

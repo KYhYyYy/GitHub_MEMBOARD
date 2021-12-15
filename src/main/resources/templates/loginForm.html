@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
+	<meta name="author" content="AdminKit">
+	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
+
+	<link rel="canonical" href="https://demo-basic.adminkit.io/pages-sign-in.html" />
+
+	<title>Sign In | AdminKit Demo</title>
+
+	<link href="css/app.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<main class="d-flex w-100">
+		<div class="container d-flex flex-column">
+			<div class="row vh-100">
+				<div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
+					<div class="d-table-cell align-middle">
+
+						<div class="text-center mt-4">
+							<h1 class="h2">로그인</h1>
+							<p class="lead">
+								아이디와 비밀번호를 입력해주세요
+							</p>
+						</div>
+
+						<div class="card">
+							<div class="card-body">
+								<div class="m-sm-4">
+									<div class="text-center">
+										<img src="img/icia.jpg" alt="어피치" class="img-fluid rounded-circle" width="132" height="132" />
+									</div>
+									<form action="mLogin" method="POST">
+										<div class="mb-3">
+											<label class="form-label">아이디</label>
+											<input class="form-control form-control-lg" type="text" name="mId" placeholder="Enter your ID" />
+										</div>
+										<div class="mb-3">
+											<label class="form-label">비밀번호</label>
+											<input class="form-control form-control-lg" type="password" name="mPw" placeholder="Enter your Password" />
+										</div>
+										<div class="text-center mt-3">
+											<!-- <button type="submit" class="btn btn-lg btn-primary">Sign in</button> -->
+											<input type="submit" class="btn btn-lg btn-primary" value="로그인" />
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<script src="js/app.js"></script>
+
+</body>
+
+<script>
+	/*
+	* 	[1] session.loginId값을 스크립트에서 받아서
+	* 	[2] loginId가 존재하면
+	* 	[3] alert창을 띄우고
+	* 	[4] index 페이지로 이동한다!
+	*/
+
+	// [1] session.loginId값을 스크립트에서 받아서
+	let loginId = '[[${session.loginId}]]';
+	console.log("loginId : " + loginId);
+
+	// [2] loginId가 존재하면
+	if(loginId!=""){
+		// [3] alert창을 띄우고
+		alert('현재 로그인 중입니다!');
+
+		// [4] index 페이지로 이동한다!
+		location.href="index";
+	}
+
+</script>
+
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
+    <meta name="author" content="AdminKit">
+    <meta name="keywords"
+          content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="shortcut icon" href="img/icons/icon-48x48.png"/>
+
+    <link rel="canonical" href="https://demo-basic.adminkit.io/ui-cards.html"/>
+
+    <title>Cards | AdminKit Demo</title>
+
+    <link href="css/app.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<div class="wrapper">
+
+    <!-- (왼쪽) nav -->
+    <nav id="sidebar" class="sidebar js-sidebar">
+        <div class="sidebar-content js-simplebar">
+            <a class="sidebar-brand" href="index">
+                <span class="align-middle">ICIA_MEMBOARD</span>
+            </a>
+
+            <ul class="sidebar-nav">
+                <li class="sidebar-header">
+                    MEMBER
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="joinForm">
+                        <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">회원가입</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="loginForm">
+                        <i class="align-middle" data-feather="user"></i> <span class="align-middle">로그인</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="mList">
+                        <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">회원목록</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <!-- thymeleaf(th)로 경로(주소)를 보낼 때 @{} 안에 값을 넣어준다. -->
+                    <!-- href와 th:href의 차이점 -->
+                    <!-- th:href는 ${data.value} -->
+                    <a class="sidebar-link" th:href="@{mView(mId=${session.loginId})}">
+                        <!-- mView?mId=inchoriya(loginId) -->
+                        <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">내정보보기</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item active">
+                    <a class="sidebar-link" href="logout">
+                        <i class="align-middle" data-feather="grid"></i> <span class="align-middle">로그아웃</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-header">
+                    BOARD
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="writeForm">
+                        <i class="align-middle" data-feather="square"></i> <span class="align-middle">글쓰기</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="bList">
+                        <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">글목록</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link" th:href="@{bView(bNo=41)}">
+                        <!-- href="bView?bNo=1" -->
+                        <i class="align-middle" data-feather="align-left"></i> <span
+                            class="align-middle">게시글보기</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+
+    <!-- (오른쪽) main -->
+    <div class="main">
+
+        <!-- header 부분 -->
+        <nav class="navbar navbar-expand navbar-light navbar-bg">
+            <a class="sidebar-toggle js-sidebar-toggle">
+                <i class="hamburger align-self-center"></i>
+            </a>
+
+            <div class="navbar-collapse collapse">
+                <ul class="navbar-nav navbar-align">
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
+                            <i class="align-middle" data-feather="settings"></i>
+                        </a>
+
+                        <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
+                            <!-- <img th:if="${session.loginId eq null}" src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall"/>-->
+                            <img th:if="${session.loginId ne null}"
+                                 th:src="@{/profile/{mProfileName}(mProfileName=${session.loginProfile})}"
+                                 class="avatar img-fluid rounded me-1" alt="Charles Hall"/>
+
+                            <span th:if="${session.loginId eq null}" class="text-dark">로그인하기</span>
+                            <span th:if="${session.loginId ne null}" class="text-dark"
+                                  th:text="${session.loginId}"></span>
+
+                        </a>
+                        <!-- 로그인 x -->
+                        <div th:if="${session.loginId eq null}" class="dropdown-menu dropdown-menu-end">
+                            <a class="dropdown-item" href="joinForm"><i class="align-middle me-1"
+                                                                        data-feather="user"></i> 회원가입</a>
+                            <a class="dropdown-item" href="loginForm"><i class="align-middle me-1"
+                                                                         data-feather="pie-chart"></i>
+                                로그인</a>
+                            <a class="dropdown-item" href="mList"><i class="align-middle me-1"
+                                                                     data-feather="settings"></i> 회원목록</a>
+                            <a class="dropdown-item" href="bList"><i class="align-middle me-1"
+                                                                     data-feather="help-circle"></i> 게시글목록</a>
+                        </div>
+                        <!-- 로그인 o -->
+                        <div th:if="${session.loginId ne null}" class="dropdown-menu dropdown-menu-end">
+                            <a class="dropdown-item" href="mList"><i class="align-middle me-1"
+                                                                     data-feather="user"></i> 회원목록</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="writeForm"><i class="align-middle me-1"
+                                                                         data-feather="settings"></i> 글작성</a>
+                            <a class="dropdown-item" href="bList"><i class="align-middle me-1"
+                                                                     data-feather="help-circle"></i> 글목록</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="logout">Log out</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- content 부분-->
+        <main class="content">
+            <div class="container-fluid p-0">
+                <div class="mb-3">
+                    <h1 class="h3 d-inline align-middle">게시글 상세보기</h1>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <div class="card">
+
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">글번호</h5>
+                                <p class="card-text" th:text="${board.bNo}"></p>
+                            </div>
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">제목</h5>
+                                <p class="card-text" th:text="${board.bTitle}"></p>
+                            </div>
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">작성자</h5>
+                                <p class="card-text" th:text="${board.bWriter}"></p>
+                            </div>
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">작성일</h5>
+                                <p class="card-text" th:text="${board.bDate}"></p>
+                            </div>
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">조회수</h5>
+                                <p class="card-text" th:text="${board.bHit}"></p>
+                            </div>
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">내용</h5>
+                                <p class="card-text" th:text="${board.bContent}"></p>
+                            </div>
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">첨부파일</h5>
+                                <img class="card-img-top" th:src="@{/upload/{bFileName}(bFileName=${board.bFileName})}">
+                            </div>
+
+                            <div class="card-body">
+                                <a class="btn btn-primary" th:href="@{bModiForm(bNo=${board.bNo})}">수정</a>
+                                <a class="btn btn-primary" th:href="@{bDelete(bNo=${board.bNo})}">삭제</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- footer 부분 -->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row text-muted">
+                    <div class="col-6 text-start">
+                        <p class="mb-0">
+                            <a class="text-muted" href="https:/www.icia.co.kr/"
+                               target="_blank"><strong>KYUNGHWAN</strong></a>
+                            &copy;
+                        </p>
+                    </div>
+                    <div class="col-6 text-end">
+                        <ul class="list-inline">
+                            <li class="list-inline-item">
+                                <a class="text-muted" href="https://adminkit.io/" target="_blank">Support</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a class="text-muted" href="https://adminkit.io/" target="_blank">Help Center</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a class="text-muted" href="https://adminkit.io/" target="_blank">Privacy</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a class="text-muted" href="https://adminkit.io/" target="_blank">Terms</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+</div>
+
+<script src="js/app.js"></script>
+
+</body>
+
+</html>

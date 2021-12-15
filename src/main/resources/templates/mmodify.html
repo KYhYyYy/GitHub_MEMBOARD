@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="KYUNGHWAN" />
+    <meta name="description" content="MEMBOARD프로젝트 회원수정 페이지" />
+    <title>MEMBOARD_회원수정</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/table.css}">
+</head>
+
+<body>
+
+<!-- 자동정렬 : [Ctrl] + [Alt] + [L] -->
+
+<form action="mModify" method="POST">
+    <table>
+        <caption>회원수정</caption>
+
+        <tr>
+            <th>아이디</th>
+            <td><input type="hidden" name="mId" th:text="${member.mId}" th:value="${member.mId}" /></td>
+        </tr>
+
+        <tr>
+            <th>패스워드</th>
+            <td><input type="password" name="mPw" /></td>
+        </tr>
+
+        <tr>
+            <th>이름</th>
+            <td><input type="text" name="mName" th:placeholder="${member.mName}" /></td>
+        </tr>
+
+        <tr>
+            <th>나이</th>
+            <td><input type="text" name="mAge" th:placeholder="${member.mAge}" /></td>
+        </tr>
+
+        <tr>
+            <td colspan="2"><input type="submit" value="수정" /></td>
+        </tr>
+
+    </table>
+</form>
+
+</body>
+
+</html>
